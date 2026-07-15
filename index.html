@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0D131E">
+  <meta name="description" content="แบบประเมินสุขภาพ 30 วินาที และจองสแกน PRYSM iO">
+  <title>PRYSM Wellness Challenge | Ong TeamElite</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #f6f4ef;
+      --paper-2: #eeece5;
+      --ink: #0D131E;
+      --ink-soft: #172130;
+      --text: #2A2F35;
+      --muted: #707780;
+      --line: rgba(13, 19, 30, .12);
+      --white: #ffffff;
+      --lime: #b9ff4b;
+      --lime-dark: #7cad23;
+      --teal: #00e5cc;
+      --purple: #8b5cf6;
+      --blue: #3d8bff;
+      --green: #31c878;
+      --yellow: #ffd23d;
+      --orange: #ff8a3d;
+      --red: #ff4d4d;
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --shadow: 0 24px 70px rgba(13, 19, 30, .10);
+      --shadow-soft: 0 14px 40px rgba(13, 19, 30, .07);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% 2%, rgba(185,255,75,.18), transparent 23rem),
+        radial-gradient(circle at 98% 18%, rgba(0,229,204,.13), transparent 27rem),
+        var(--paper);
+      color: var(--text);
+      font-family: "Prompt", sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, a, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    img { max-width: 100%; }
+    [hidden] { display: none !important; }
+
+    .shell {
+      width: min(1180px, calc(100% - 32px));
+      margin-inline: auto;
+    }
+
+    .nav {
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      text-decoration: none;
+      font-family: "Manrope", sans-serif;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .brand-mark {
+      width: 39px;
+      height: 39px;
+      border-radius: 13px;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(13,19,30,.17);
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      border-radius: 99px;
+      transform: rotate(-38deg);
+    }
+
+    .brand-mark::before {
+      width: 10px;
+      height: 38px;
+      background: var(--lime);
+      left: 10px;
+      top: -5px;
+    }
+
+    .brand-mark::after {
+      width: 10px;
+      height: 32px;
+      background: var(--teal);
+      right: 8px;
+      bottom: -8px;
+    }
+
+    .brand small {
+      display: block;
+      margin-top: -3px;
+      color: var(--muted);
+      font-family: "Prompt", sans-serif;
+      font-size: .69rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .lang-switch {
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 4px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.62);
+      border-radius: 999px;
+      backdrop-filter: blur(14px);
+    }
+
+    .lang-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 13px;
+      cursor: pointer;
+      font-size: .82rem;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--ink);
+      color: var(--white);
+      box-shadow: 0 6px 16px rgba(13,19,30,.16);
+    }
+
+    .hero {
+      min-height: calc(100svh - 96px);
+      display: grid;
+      grid-template-columns: 1.06fr .94fr;
+      align-items: center;
+      gap: clamp(42px, 7vw, 88px);
+      padding: 48px 0 92px;
+    }
+
+    .profile-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      border: 1px solid rgba(13,19,30,.10);
+      background: rgba(255,255,255,.70);
+      padding: 7px 14px 7px 7px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+      margin-bottom: 28px;
+    }
+
+    .profile-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--teal), var(--lime));
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      font-size: .82rem;
+      font-weight: 800;
+      border: 2px solid var(--white);
+    }
+
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-pill strong {
+      display: block;
+      color: var(--ink);
+      font-size: .9rem;
+      line-height: 1.25;
+    }
+
+    .profile-pill span {
+      display: block;
+      color: var(--muted);
+      font-size: .73rem;
+      line-height: 1.25;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 3px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--lime), var(--teal));
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 {
+      font-family: "Manrope", "Prompt", sans-serif;
+      color: var(--ink);
+      letter-spacing: -.035em;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin-bottom: 22px;
+      font-size: clamp(3rem, 7vw, 6.3rem);
+      font-weight: 800;
+      line-height: .98;
+    }
+
+    .accent-word {
+      position: relative;
+      display: inline-block;
+      z-index: 0;
+    }
+
+    .accent-word::after {
+      content: "";
+      position: absolute;
+      left: -.03em;
+      right: -.02em;
+      bottom: .05em;
+      height: .21em;
+      background: var(--lime);
+      border-radius: 99px;
+      z-index: -1;
+      transform: rotate(-1.5deg);
+    }
+
+    .hero-copy {
+      max-width: 610px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.6vw, 1.18rem);
+      margin-bottom: 31px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      min-height: 56px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 14px 22px;
+      border: 1px solid transparent;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: scale(.98); }
+
+    .btn-primary {
+      background: var(--lime);
+      color: var(--ink);
+      box-shadow: 0 14px 30px rgba(135,190,35,.23);
+    }
+
+    .btn-primary:hover { box-shadow: 0 18px 38px rgba(135,190,35,.31); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.72);
+      color: var(--ink);
+      border-color: rgba(13,19,30,.12);
+      backdrop-filter: blur(12px);
+    }
+
+    .btn-dark {
+      background: var(--ink);
+      color: var(--white);
+      box-shadow: 0 14px 30px rgba(13,19,30,.20);
+    }
+
+    .arrow {
+      width: 19px;
+      height: 19px;
+      display: inline-block;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 620px;
+      display: grid;
+      place-items: center;
+    }
+
+    .visual-orbit {
+      position: absolute;
+      width: min(520px, 90vw);
+      aspect-ratio: 1;
+      border: 1px solid rgba(13,19,30,.10);
+      border-radius: 50%;
+    }
+
+    .visual-orbit::before,
+    .visual-orbit::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(13,19,30,.08);
+    }
+
+    .visual-orbit::before { inset: 12%; }
+    .visual-orbit::after { inset: 25%; }
+
+    .prysm-card {
+      position: relative;
+      width: min(390px, 88vw);
+      padding: 14px;
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 34px;
+      box-shadow: 0 35px 90px rgba(13,19,30,.18);
+      transform: rotate(2.5deg);
+      backdrop-filter: blur(18px);
+      z-index: 2;
+    }
+
+    .prysm-card img {
+      width: 100%;
+      display: block;
+      border-radius: 24px;
+    }
+
+    .floating-chip {
+      position: absolute;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 150px;
+      padding: 13px 15px;
+      background: rgba(255,255,255,.91);
+      border: 1px solid rgba(13,19,30,.08);
+      border-radius: 18px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(16px);
+    }
+
+    .floating-chip strong {
+      display: block;
+      color: var(--ink);
+      font-size: .88rem;
+      line-height: 1.25;
+    }
+
+    .floating-chip span {
+      display: block;
+      color: var(--muted);
+      font-size: .7rem;
+      line-height: 1.25;
+    }
+
+    .chip-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--ink);
+      color: var(--lime);
+      font-family: "Manrope", sans-serif;
+      font-size: .76rem;
+      font-weight: 800;
+    }
+
+    .chip-time { left: 0; top: 18%; }
+    .chip-zone { right: -2%; bottom: 18%; }
+
+    .spectrum-line {
+      position: absolute;
+      left: 3%;
+      right: 4%;
+      bottom: 0;
+      height: 9px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--purple));
+      box-shadow: 0 7px 20px rgba(13,19,30,.14);
+    }
+
+    .facts {
+      margin-top: -24px;
+      position: relative;
+      z-index: 4;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--white);
+      border: 1px solid rgba(13,19,30,.08);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .fact {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .fact + .fact { border-left: 1px solid var(--line); }
+
+    .fact strong {
+      display: block;
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      font-size: 1.15rem;
+      margin-bottom: 3px;
+    }
+
+    .fact span {
+      color: var(--muted);
+      font-size: .84rem;
+    }
+
+    .section {
+      padding: 112px 0;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 13px;
+      color: var(--lime-dark);
+      font-family: "Manrope", sans-serif;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      max-width: 800px;
+      margin-bottom: 18px;
+      font-size: clamp(2.2rem, 4.7vw, 4.4rem);
+      line-height: 1.05;
+      font-weight: 800;
+    }
+
+    .section-copy {
+      max-width: 690px;
+      color: var(--muted);
+      font-size: 1.03rem;
+      margin-bottom: 36px;
+    }
+
+    .quiz-wrap {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .quiz-intro {
+      position: relative;
+      overflow: hidden;
+      min-height: 520px;
+      padding: clamp(28px, 4vw, 48px);
+      border-radius: var(--radius-xl);
+      background: var(--ink);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .quiz-intro::before {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: rgba(0,229,204,.18);
+      filter: blur(2px);
+      right: -180px;
+      top: -130px;
+    }
+
+    .quiz-intro::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(185,255,75,.15);
+      left: -140px;
+      bottom: -160px;
+    }
+
+    .quiz-intro > * { position: relative; z-index: 1; }
+
+    .quiz-intro .section-kicker { color: var(--teal); }
+    .quiz-intro h2 {
+      color: var(--white);
+      font-size: clamp(2.1rem, 3.6vw, 3.5rem);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .quiz-intro p {
+      color: rgba(255,255,255,.68);
+      font-size: .98rem;
+    }
+
+    .quiz-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .quiz-meta span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      border: 1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.06);
+      padding: 6px 11px;
+      border-radius: 999px;
+      color: rgba(255,255,255,.82);
+      font-size: .76rem;
+    }
+
+    .quiz-card {
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(26px, 4vw, 48px);
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(13,19,30,.08);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .quiz-progress {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 34px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 7px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: var(--paper-2);
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--teal), var(--lime));
+      transition: width .35s ease;
+    }
+
+    .progress-count {
+      min-width: 48px;
+      text-align: right;
+      color: var(--muted);
+      font-family: "Manrope", sans-serif;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .question-stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .question-emoji {
+      width: 70px;
+      height: 70px;
+      display: grid;
+      place-items: center;
+      border-radius: 22px;
+      background: var(--paper);
+      font-size: 2rem;
+      margin-bottom: 24px;
+    }
+
+    .question-label {
+      color: var(--muted);
+      font-family: "Manrope", sans-serif;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .question-text {
+      max-width: 650px;
+      margin-bottom: 28px;
+      color: var(--ink);
+      font-family: "Manrope", "Prompt", sans-serif;
+      font-size: clamp(1.55rem, 3vw, 2.45rem);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -.03em;
+    }
+
+    .answer-list {
+      display: grid;
+      gap: 11px;
+      margin-top: auto;
+    }
+
+    .answer-btn {
+      width: 100%;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border: 1px solid var(--line);
+      background: rgba(246,244,239,.78);
+      color: var(--ink);
+      border-radius: 17px;
+      padding: 14px 17px;
+      text-align: left;
+      cursor: pointer;
+      font-weight: 600;
+      transition: .18s ease;
+    }
+
+    .answer-btn:hover {
+      border-color: var(--ink);
+      background: var(--white);
+      transform: translateY(-1px);
+    }
+
+    .answer-dot {
+      width: 30px;
+      height: 30px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      font-size: .82rem;
+    }
+
+    .question-animate {
+      animation: rise .32s ease both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .result {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      animation: rise .35s ease both;
+    }
+
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      gap: 9px;
+      margin-bottom: 22px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--muted);
+      font-size: .77rem;
+      font-weight: 700;
+    }
+
+    .result-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(49,200,120,.13);
+    }
+
+    .result h3 {
+      max-width: 650px;
+      margin-bottom: 16px;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1.05;
+    }
+
+    .result-message {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 23px;
+    }
+
+    .habit-spectrum {
+      position: relative;
+      height: 11px;
+      margin: 6px 0 33px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple));
+    }
+
+    .habit-marker {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 25px;
+      height: 25px;
+      border: 5px solid var(--white);
+      border-radius: 50%;
+      background: var(--ink);
+      box-shadow: 0 5px 16px rgba(13,19,30,.23);
+      transform: translate(-50%, -50%);
+      transition: left .5s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .result-note {
+      padding: 15px 17px;
+      border-left: 4px solid var(--teal);
+      background: rgba(0,229,204,.08);
+      border-radius: 4px 14px 14px 4px;
+      color: #3f4850;
+      font-size: .86rem;
+      margin-bottom: 22px;
+    }
+
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .text-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 12px 7px;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .step-card {
+      min-height: 280px;
+      padding: 29px;
+      background: var(--white);
+      border: 1px solid rgba(13,19,30,.08);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .step-number {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--ink);
+      color: var(--lime);
+      font-family: "Manrope", sans-serif;
+      font-weight: 800;
+      margin-bottom: 50px;
+    }
+
+    .step-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+    }
+
+    .step-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .coach {
+      display: grid;
+      grid-template-columns: .88fr 1.12fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .coach-photo {
+      min-height: 540px;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(150deg, rgba(0,229,204,.92), rgba(185,255,75,.92));
+      box-shadow: var(--shadow);
+    }
+
+    .coach-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .coach-placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 800;
+      letter-spacing: -.08em;
+    }
+
+    .coach-placeholder::after {
+      content: "";
+      position: absolute;
+      width: 70%;
+      height: 70%;
+      border: 1px solid rgba(13,19,30,.18);
+      border-radius: 50%;
+    }
+
+    .coach-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(32px, 5vw, 70px);
+      border-radius: var(--radius-xl);
+      background: var(--ink);
+      color: rgba(255,255,255,.74);
+      box-shadow: var(--shadow);
+    }
+
+    .coach-copy .section-kicker { color: var(--teal); }
+    .coach-copy h2 {
+      color: var(--white);
+      margin-bottom: 18px;
+      font-size: clamp(2.3rem, 4.5vw, 4.4rem);
+      line-height: 1.04;
+    }
+
+    .coach-copy p { white-space: pre-line; }
+    .coach-copy .btn { align-self: flex-start; margin-top: 14px; }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+      max-width: 880px;
+    }
+
+    .faq-item {
+      overflow: hidden;
+      border: 1px solid rgba(13,19,30,.09);
+      background: rgba(255,255,255,.78);
+      border-radius: 19px;
+      box-shadow: 0 9px 30px rgba(13,19,30,.04);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      padding: 20px 22px;
+      text-align: left;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .faq-icon {
+      width: 29px;
+      height: 29px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--paper);
+      transition: transform .2s ease;
+    }
+
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease;
+    }
+
+    .faq-answer p {
+      padding: 0 22px 21px;
+      margin: 0;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .final-cta {
+      position: relative;
+      overflow: hidden;
+      margin: 20px 0 40px;
+      padding: clamp(38px, 7vw, 84px);
+      border-radius: 38px;
+      background: var(--ink);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .final-cta::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: rgba(185,255,75,.17);
+      right: -170px;
+      top: -230px;
+    }
+
+    .final-cta::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(0,229,204,.13);
+      left: -170px;
+      bottom: -220px;
+    }
+
+    .final-cta > * { position: relative; z-index: 1; }
+
+    .final-cta h2 {
+      max-width: 800px;
+      color: var(--white);
+      margin-bottom: 16px;
+      font-size: clamp(2.2rem, 5vw, 5rem);
+      line-height: 1.03;
+    }
+
+    .final-cta p {
+      max-width: 640px;
+      color: rgba(255,255,255,.67);
+      margin-bottom: 27px;
+    }
+
+    footer {
+      padding: 28px 0 96px;
+      color: var(--muted);
+      font-size: .77rem;
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-row p {
+      max-width: 760px;
+      margin-bottom: 0;
+    }
+
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: max(12px, env(safe-area-inset-bottom));
+      z-index: 50;
+      padding: 10px;
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(13,19,30,.10);
+      border-radius: 20px;
+      box-shadow: 0 18px 50px rgba(13,19,30,.22);
+      backdrop-filter: blur(18px);
+    }
+
+    .mobile-cta .btn { width: 100%; min-height: 52px; }
+
+    @media (max-width: 930px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 40px;
+      }
+
+      .hero-content { text-align: center; }
+      .profile-pill { margin-inline: auto; }
+      .eyebrow { justify-content: center; }
+      .hero-copy { margin-inline: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { min-height: 560px; }
+
+      .quiz-wrap,
+      .coach { grid-template-columns: 1fr; }
+
+      .quiz-intro { min-height: auto; }
+      .steps { grid-template-columns: 1fr; }
+      .step-card { min-height: 0; }
+      .step-number { margin-bottom: 28px; }
+      .coach-photo { min-height: 460px; }
+    }
+
+    @media (max-width: 680px) {
+      .shell { width: min(100% - 22px, 1180px); }
+      .nav { height: 70px; }
+      .brand small { display: none; }
+      .brand-mark { width: 35px; height: 35px; }
+      .lang-btn { padding: 7px 10px; }
+
+      .hero {
+        padding: 34px 0 74px;
+        gap: 34px;
+      }
+
+      h1 { font-size: clamp(2.85rem, 16vw, 4.45rem); }
+      .hero-copy { font-size: .96rem; }
+      .hero-actions .btn { width: 100%; }
+      .hero-visual { min-height: 475px; }
+      .prysm-card { width: min(315px, 84vw); border-radius: 27px; padding: 10px; }
+      .prysm-card img { border-radius: 20px; }
+      .visual-orbit { width: 390px; }
+      .floating-chip { min-width: 135px; padding: 10px 12px; }
+      .chip-time { left: -1%; top: 12%; }
+      .chip-zone { right: -1%; bottom: 13%; }
+
+      .facts {
+        grid-template-columns: 1fr;
+        margin-top: 8px;
+      }
+
+      .fact { padding: 18px; }
+      .fact + .fact {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .section { padding: 80px 0; }
+      .section-title { font-size: clamp(2.05rem, 11vw, 3.3rem); }
+      .quiz-wrap { gap: 16px; }
+      .quiz-intro, .quiz-card { border-radius: 26px; }
+      .quiz-card { min-height: 540px; padding: 24px 20px; }
+      .question-text { font-size: 1.62rem; }
+      .answer-btn { min-height: 58px; }
+      .result-actions .btn { width: 100%; }
+
+      .coach-photo { min-height: 400px; border-radius: 27px; }
+      .coach-copy { border-radius: 27px; }
+      .coach-copy .btn { width: 100%; }
+
+      .final-cta { border-radius: 28px; padding: 40px 24px; }
+      .final-cta .btn { width: 100%; }
+
+      .footer-row { flex-direction: column; }
+      .mobile-cta { display: block; }
+      footer { padding-bottom: 118px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="shell">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="PRYSM Wellness Challenge">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          PRYSM Challenge
+          <small>by WE TEAM</small>
+        </span>
+      </a>
+
+      <div class="lang-switch" aria-label="Language">
+        <button class="lang-btn active" type="button" data-lang="th">TH</button>
+        <button class="lang-btn" type="button" data-lang="en">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="shell hero">
+      <div class="hero-content">
+        <div class="profile-pill">
+          <div class="profile-avatar" id="heroAvatar"><span id="heroInitials">OT</span></div>
+          <div>
+            <strong id="profileName">อ๋อง TeamElite</strong>
+            <span id="profileTagline">Active Dad · Wellness Mentor</span>
+          </div>
+        </div>
+
+        <div class="eyebrow" data-i18n="heroEyebrow">30-Second Wellness Challenge</div>
+        <h1 data-i18n-html="heroTitle">คุณดูแลสุขภาพดีแค่ไหน<br><span class="accent-word">จริงๆ?</span></h1>
+        <p class="hero-copy" data-i18n="heroCopy">
+          ตอบเพียง 5 ข้อเพื่อทบทวนพฤติกรรมสุขภาพของคุณ แล้วค้นหาว่าทำไมหลายคนจึงอยากรู้คะแนน PRYSM iO ที่วัดได้จริง
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#challenge">
+            <span data-i18n="startChallenge">เริ่มเช็ก 30 วินาที</span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="btn btn-secondary line-link" href="#" target="_blank" rel="noopener">
+            <span data-i18n="bookNow">จองสแกนเลย</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="PRYSM iO nutritional wellness scale">
+        <div class="visual-orbit" aria-hidden="true"></div>
+
+        <div class="floating-chip chip-time">
+          <div class="chip-icon">15s</div>
+          <div>
+            <strong data-i18n="chipTimeTitle">รู้ผลรวดเร็ว</strong>
+            <span data-i18n="chipTimeText">ใช้เวลาประมาณ 15 วินาที</span>
+          </div>
+        </div>
+
+        <div class="prysm-card">
+          <img src="data:image/webp;base64,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" alt="PRYSM iO Nutritional Wellness Scale">
+        </div>
+
+        <div class="floating-chip chip-zone">
+          <div class="chip-icon">A+</div>
+          <div>
+            <strong data-i18n="chipZoneTitle">เห็นโซนของคุณ</strong>
+            <span data-i18n="chipZoneText">อ่านง่าย เข้าใจทันที</span>
+          </div>
+        </div>
+
+        <div class="spectrum-line" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="shell" aria-label="PRYSM highlights">
+      <div class="facts">
+        <div class="fact">
+          <strong>15 sec</strong>
+          <span data-i18n="fact1">สแกนรวดเร็ว</span>
+        </div>
+        <div class="fact">
+          <strong data-i18n="fact2Title">ไม่เจาะเลือด</strong>
+          <span data-i18n="fact2">แตะบริเวณปลายนิ้ว</span>
+        </div>
+        <div class="fact">
+          <strong data-i18n="fact3Title">เห็นผลทันที</strong>
+          <span data-i18n="fact3">รู้โซนคะแนนของคุณ</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="challenge">
+      <div class="shell">
+        <div class="quiz-wrap">
+          <aside class="quiz-intro">
+            <span class="section-kicker" data-i18n="quizKicker">5 Questions · 30 Seconds</span>
+            <h2 data-i18n-html="quizIntroTitle">ลองเช็กนิสัยสุขภาพ<br>ของคุณวันนี้</h2>
+            <p data-i18n="quizIntroCopy">
+              แบบประเมินนี้ไม่ได้คำนวณคะแนน PRYSM แต่ช่วยให้คุณเห็นภาพพฤติกรรมในแต่ละวัน และสร้างความอยากรู้ว่าคะแนนที่วัดจริงจะเป็นอย่างไร
+            </p>
+            <div class="quiz-meta">
+              <span data-i18n="meta1">ไม่ต้องลงทะเบียน</span>
+              <span data-i18n="meta2">ไม่มีคำตอบผิด</span>
+              <span data-i18n="meta3">ผลทันที</span>
+            </div>
+          </aside>
+
+          <section class="quiz-card" aria-live="polite">
+            <div class="quiz-progress">
+              <div class="progress-track" aria-hidden="true">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+              <div class="progress-count" id="progressCount">1 / 5</div>
+            </div>
+
+            <div class="question-stage" id="questionStage"></div>
+
+            <div class="result" id="resultPanel" hidden>
+              <div class="result-badge">
+                <span class="result-dot" id="resultDot"></span>
+                <span id="resultBadge"></span>
+              </div>
+
+              <h3 id="resultTitle"></h3>
+              <p class="result-message" id="resultMessage"></p>
+
+              <div class="habit-spectrum" aria-label="Lifestyle habit spectrum">
+                <span class="habit-marker" id="habitMarker"></span>
+              </div>
+
+              <div class="result-note" data-i18n="resultNote">
+                นี่คือภาพรวมจากพฤติกรรมเท่านั้น ไม่ใช่คะแนน PRYSM จริง คะแนนจริงต้องวัดด้วยเครื่อง PRYSM iO
+              </div>
+
+              <div class="result-actions">
+                <a class="btn btn-primary line-link" href="#" target="_blank" rel="noopener">
+                  <span data-i18n="resultCTA">จองสแกนเพื่อรู้คะแนนจริง</span>
+                  <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <button class="text-btn" id="retryButton" type="button" data-i18n="retry">ทำใหม่อีกครั้ง</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <span class="section-kicker" data-i18n="howKicker">How PRYSM Works</span>
+        <h2 class="section-title" data-i18n="howTitle">จากความรู้สึก สู่ข้อมูลที่เห็นได้</h2>
+        <p class="section-copy" data-i18n="howCopy">
+          ขั้นตอนเรียบง่าย ใช้เวลาไม่นาน และช่วยให้คุณมีจุดเริ่มต้นสำหรับพูดคุยเรื่องพฤติกรรมสุขภาพของตัวเอง
+        </p>
+
+        <div class="steps">
+          <article class="step-card">
+            <div class="step-number">01</div>
+            <h3 data-i18n="step1Title">วางนิ้วเพื่อสแกน</h3>
+            <p data-i18n="step1Copy">ไม่เจาะเลือด เพียงวางบริเวณปลายนิ้วตามคำแนะนำ</p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">02</div>
+            <h3 data-i18n="step2Title">เห็นคะแนนใน 15 วินาที</h3>
+            <p data-i18n="step2Copy">ผลแสดงเป็นโซนสีที่เข้าใจง่าย และใช้เป็นข้อมูลอ้างอิงในการพูดคุย</p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">03</div>
+            <h3 data-i18n="step3Title">วางแผนดูแลตัวเอง</h3>
+            <p data-i18n="step3Copy">ทบทวนการกิน การนอน การขยับร่างกาย และติดตามการเปลี่ยนแปลงในอนาคต</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell coach">
+        <div class="coach-photo" id="coachPhoto">
+          <div class="coach-placeholder" id="coachInitials">OT</div>
+        </div>
+
+        <div class="coach-copy">
+          <span class="section-kicker" data-i18n="coachKicker">Meet Your Wellness Mentor</span>
+          <h2 id="coachHeading">สวัสดีครับ ผมอ๋อง</h2>
+          <p id="coachStory">
+ผมเป็นพ่อลูกสามที่เชื่อว่า “สุขภาพดี” ไม่ควรดูจากความรู้สึกเพียงอย่างเดียว
+
+เมื่อได้ลองสแกน PRYSM ครั้งแรก ผมเห็นว่าตัวเลขช่วยให้เราเริ่มต้นบทสนทนาเรื่องสุขภาพได้ง่ายขึ้น และทำให้การปรับพฤติกรรมเล็กๆ มีเป้าหมายชัดเจนกว่าเดิม
+
+ผมจึงอยากชวนคุณมาลองดูคะแนนของตัวเอง ใช้เวลาไม่นาน และคุยกันแบบสบายๆ ได้เลยครับ
+          </p>
+          <a class="btn btn-primary line-link" href="#" target="_blank" rel="noopener">
+            <span data-i18n="talkOnLine">ทัก LINE คุยกับอ๋อง</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <span class="section-kicker" data-i18n="faqKicker">Frequently Asked Questions</span>
+        <h2 class="section-title" data-i18n="faqTitle">คำถามที่คนมักถามก่อนสแกน</h2>
+
+        <div class="faq-list" id="faqList"></div>
+      </div>
+    </section>
+
+    <section class="shell final-cta">
+      <span class="section-kicker" data-i18n="finalKicker">Ready to Know Your Score?</span>
+      <h2 data-i18n-html="finalTitle">พร้อมรู้คะแนน<br>ของตัวเองหรือยัง?</h2>
+      <p data-i18n="finalCopy">
+        ใช้เวลาประมาณ 15 วินาที ไม่เจาะเลือด และคุณจะได้เห็นโซนคะแนนของตัวเองทันที
+      </p>
+      <a class="btn btn-primary line-link" href="#" target="_blank" rel="noopener">
+        <span data-i18n="finalCTA">จอง PRYSM Scan ทาง LINE</span>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <div class="footer-row">
+      <p data-i18n="disclaimer">
+        แบบประเมินนี้เป็นเพียงการทบทวนพฤติกรรมทั่วไป ไม่ใช่การวินิจฉัยหรือคำแนะนำทางการแพทย์ ผลจาก PRYSM iO เป็นข้อมูลด้านโภชนาการและสุขภาวะ ไม่ใช้ทดแทนการตรวจหรือคำแนะนำจากบุคลากรทางการแพทย์
+      </p>
+      <span>© <span id="year"></span> WE TEAM</span>
+    </div>
+  </footer>
+
+  <div class="mobile-cta">
+    <a class="btn btn-primary line-link" href="#" target="_blank" rel="noopener">
+      <span data-i18n="mobileCTA">จองสแกนทาง LINE</span>
+    </a>
+  </div>
+
+  <script>
+    /*
+      ================================================================
+      PHASE 1 — PERSONAL PAGE SETTINGS
+      Edit only this PROFILE object for the Ong TeamElite demo page.
+      Later, Phase 2 will load these fields from Firebase automatically.
+      ================================================================
+    */
+    const PROFILE = {
+      lineUrl: "https://line.me/ti/p/~YOUR_LINE_ID",
+      photoUrl: "",
+
+      name: {
+        th: "อ๋อง TeamElite",
+        en: "Ong TeamElite"
+      },
+
+      tagline: {
+        th: "Active Dad · Wellness Mentor",
+        en: "Active Dad · Wellness Mentor"
+      },
+
+      coachHeading: {
+        th: "สวัสดีครับ ผมอ๋อง",
+        en: "Hi, I’m Ong"
+      },
+
+      story: {
+        th: `ผมเป็นพ่อลูกสามที่เชื่อว่า “สุขภาพดี” ไม่ควรดูจากความรู้สึกเพียงอย่างเดียว
+
+เมื่อได้ลองสแกน PRYSM ครั้งแรก ผมเห็นว่าตัวเลขช่วยให้เราเริ่มต้นบทสนทนาเรื่องสุขภาพได้ง่ายขึ้น และทำให้การปรับพฤติกรรมเล็กๆ มีเป้าหมายชัดเจนกว่าเดิม
+
+ผมจึงอยากชวนคุณมาลองดูคะแนนของตัวเอง ใช้เวลาไม่นาน และคุยกันแบบสบายๆ ได้เลยครับ`,
+
+        en: `I’m a father of three who believes that feeling healthy does not always tell us the whole story.
+
+My first PRYSM scan showed me how a simple number can make wellness conversations easier and give small daily improvements a clearer direction.
+
+That is why I invite people to discover their own score. It only takes a moment, and we can talk through it in a relaxed, practical way.`
+      }
+    };
+
+    const translations = {
+      th: {
+        heroEyebrow: "30-Second Wellness Challenge",
+        heroTitle: 'คุณดูแลสุขภาพดีแค่ไหน<br><span class="accent-word">จริงๆ?</span>',
+        heroCopy: "ตอบเพียง 5 ข้อเพื่อทบทวนพฤติกรรมสุขภาพของคุณ แล้วค้นหาว่าทำไมหลายคนจึงอยากรู้คะแนน PRYSM iO ที่วัดได้จริง",
+        startChallenge: "เริ่มเช็ก 30 วินาที",
+        bookNow: "จองสแกนเลย",
+        chipTimeTitle: "รู้ผลรวดเร็ว",
+        chipTimeText: "ใช้เวลาประมาณ 15 วินาที",
+        chipZoneTitle: "เห็นโซนของคุณ",
+        chipZoneText: "อ่านง่าย เข้าใจทันที",
+        fact1: "สแกนรวดเร็ว",
+        fact2Title: "ไม่เจาะเลือด",
+        fact2: "แตะบริเวณปลายนิ้ว",
+        fact3Title: "เห็นผลทันที",
+        fact3: "รู้โซนคะแนนของคุณ",
+        quizKicker: "5 Questions · 30 Seconds",
+        quizIntroTitle: "ลองเช็กนิสัยสุขภาพ<br>ของคุณวันนี้",
+        quizIntroCopy: "แบบประเมินนี้ไม่ได้คำนวณคะแนน PRYSM แต่ช่วยให้คุณเห็นภาพพฤติกรรมในแต่ละวัน และสร้างความอยากรู้ว่าคะแนนที่วัดจริงจะเป็นอย่างไร",
+        meta1: "ไม่ต้องลงทะเบียน",
+        meta2: "ไม่มีคำตอบผิด",
+        meta3: "ผลทันที",
+        resultNote: "นี่คือภาพรวมจากพฤติกรรมเท่านั้น ไม่ใช่คะแนน PRYSM จริง คะแนนจริงต้องวัดด้วยเครื่อง PRYSM iO",
+        resultCTA: "จองสแกนเพื่อรู้คะแนนจริง",
+        retry: "ทำใหม่อีกครั้ง",
+        howKicker: "How PRYSM Works",
+        howTitle: "จากความรู้สึก สู่ข้อมูลที่เห็นได้",
+        howCopy: "ขั้นตอนเรียบง่าย ใช้เวลาไม่นาน และช่วยให้คุณมีจุดเริ่มต้นสำหรับพูดคุยเรื่องพฤติกรรมสุขภาพของตัวเอง",
+        step1Title: "วางนิ้วเพื่อสแกน",
+        step1Copy: "ไม่เจาะเลือด เพียงวางบริเวณปลายนิ้วตามคำแนะนำ",
+        step2Title: "เห็นคะแนนใน 15 วินาที",
+        step2Copy: "ผลแสดงเป็นโซนสีที่เข้าใจง่าย และใช้เป็นข้อมูลอ้างอิงในการพูดคุย",
+        step3Title: "วางแผนดูแลตัวเอง",
+        step3Copy: "ทบทวนการกิน การนอน การขยับร่างกาย และติดตามการเปลี่ยนแปลงในอนาคต",
+        coachKicker: "Meet Your Wellness Mentor",
+        talkOnLine: "ทัก LINE คุยกับอ๋อง",
+        faqKicker: "Frequently Asked Questions",
+        faqTitle: "คำถามที่คนมักถามก่อนสแกน",
+        finalKicker: "Ready to Know Your Score?",
+        finalTitle: "พร้อมรู้คะแนน<br>ของตัวเองหรือยัง?",
+        finalCopy: "ใช้เวลาประมาณ 15 วินาที ไม่เจาะเลือด และคุณจะได้เห็นโซนคะแนนของตัวเองทันที",
+        finalCTA: "จอง PRYSM Scan ทาง LINE",
+        mobileCTA: "จองสแกนทาง LINE",
+        disclaimer: "แบบประเมินนี้เป็นเพียงการทบทวนพฤติกรรมทั่วไป ไม่ใช่การวินิจฉัยหรือคำแนะนำทางการแพทย์ ผลจาก PRYSM iO เป็นข้อมูลด้านโภชนาการและสุขภาวะ ไม่ใช้ทดแทนการตรวจหรือคำแนะนำจากบุคลากรทางการแพทย์",
+        questionLabel: "คำถาม",
+        of: "จาก",
+        resultBadge: "ภาพรวมพฤติกรรมของคุณ",
+        questions: [
+          {
+            emoji: "🥗",
+            text: "คุณกินผักและผลไม้หลากสีบ่อยแค่ไหน?",
+            answers: [
+              ["เกือบทุกวัน", 2, "✓"],
+              ["บางวัน", 1, "•"],
+              ["แทบไม่กิน", 0, "—"]
+            ]
+          },
+          {
+            emoji: "🧋",
+            text: "คุณกินของทอด ของหวาน ชานมไข่มุก หรือน้ำอัดลมบ่อยแค่ไหน?",
+            answers: [
+              ["นานๆ ครั้ง", 2, "✓"],
+              ["บางวัน", 1, "•"],
+              ["แทบทุกวัน", 0, "—"]
+            ]
+          },
+          {
+            emoji: "😴",
+            text: "โดยทั่วไปคุณนอนคืนละกี่ชั่วโมง?",
+            answers: [
+              ["7 ชั่วโมงขึ้นไป", 2, "✓"],
+              ["ประมาณ 6–7 ชั่วโมง", 1, "•"],
+              ["น้อยกว่า 6 ชั่วโมง", 0, "—"]
+            ]
+          },
+          {
+            emoji: "🏃",
+            text: "คุณออกกำลังกายหรือขยับร่างกายจริงจังบ่อยแค่ไหน?",
+            answers: [
+              ["3 ครั้งขึ้นไปต่อสัปดาห์", 2, "✓"],
+              ["1–2 ครั้งต่อสัปดาห์", 1, "•"],
+              ["แทบไม่เลย", 0, "—"]
+            ]
+          },
+          {
+            emoji: "🚭",
+            text: "คุณสูบบุหรี่ บุหรี่ไฟฟ้า หรือได้รับควันบุหรี่บ่อยไหม?",
+            answers: [
+              ["ไม่เลย", 2, "✓"],
+              ["บางครั้ง", 1, "•"],
+              ["เป็นประจำ", 0, "—"]
+            ]
+          }
+        ],
+        results: [
+          {
+            max: 3,
+            title: "จุดเริ่มต้นที่เปลี่ยนได้",
+            message: "พฤติกรรมบางอย่างอาจกำลังลดโอกาสที่ร่างกายจะได้รับการดูแลอย่างเต็มที่ ข่าวดีคือ การปรับเล็กๆ อย่างสม่ำเสมอสามารถสร้างความแตกต่างได้ และการมีคะแนนจริงจะช่วยให้คุณเห็นจุดเริ่มต้นของตัวเองชัดขึ้น",
+            position: 17,
+            color: "#ff8a3d"
+          },
+          {
+            max: 7,
+            title: "คุณกำลังสร้างพื้นฐานที่ดี",
+            message: "คุณมีนิสัยสุขภาพที่ดีอยู่หลายข้อ และยังมีบางจุดที่พัฒนาได้อีก แบบประเมินบอกได้เพียงพฤติกรรม แต่ไม่สามารถบอกได้ว่าสภาวะโภชนาการที่วัดได้จริงของคุณอยู่ตรงไหน",
+            position: 52,
+            color: "#31c878"
+          },
+          {
+            max: 10,
+            title: "พื้นฐานของคุณดูแข็งแรงมาก",
+            message: "คุณใส่ใจสุขภาพอย่างสม่ำเสมอ แต่หลายคนที่ดูแลตัวเองดีก็ยังประหลาดใจกับคะแนนจริง เพราะความรู้สึกและพฤติกรรมไม่ได้สะท้อนข้อมูลที่วัดได้ทั้งหมด นี่คือเหตุผลที่การสแกนน่าสนใจ",
+            position: 84,
+            color: "#8b5cf6"
+          }
+        ],
+        faqs: [
+          ["สแกนเจ็บไหม?", "ไม่เจ็บและไม่เจาะเลือด เพียงวางบริเวณปลายนิ้วตามขั้นตอนของผู้ดูแลการสแกน"],
+          ["ใช้เวลานานแค่ไหน?", "การอ่านค่าของเครื่องใช้เวลาประมาณ 15 วินาที จากนั้นผู้ดูแลจะช่วยอธิบายโซนคะแนนให้เข้าใจง่าย"],
+          ["ต้องเตรียมตัวหรืออดอาหารไหม?", "โดยทั่วไปไม่จำเป็นต้องอดอาหาร คุณสามารถสอบถามผู้ดูแลการสแกนเรื่องคำแนะนำก่อนนัดได้"],
+          ["คะแนนนี้เป็นการวินิจฉัยโรคหรือไม่?", "ไม่ใช่ PRYSM iO ไม่ได้ใช้เพื่อวินิจฉัย รักษา หรือป้องกันโรค และไม่ทดแทนคำแนะนำจากแพทย์"]
+        ]
+      },
+
+      en: {
+        heroEyebrow: "30-Second Wellness Challenge",
+        heroTitle: 'How healthy are you<br><span class="accent-word">really?</span>',
+        heroCopy: "Answer five quick questions to reflect on your daily habits—and discover why so many people want to see their measured PRYSM iO score.",
+        startChallenge: "Start the 30-sec check",
+        bookNow: "Book a scan",
+        chipTimeTitle: "Fast reading",
+        chipTimeText: "About 15 seconds",
+        chipZoneTitle: "See your zone",
+        chipZoneText: "Simple and easy to understand",
+        fact1: "Fast scan",
+        fact2Title: "Non-invasive",
+        fact2: "Place your fingertip",
+        fact3Title: "Immediate result",
+        fact3: "See your score zone",
+        quizKicker: "5 Questions · 30 Seconds",
+        quizIntroTitle: "Check your wellness<br>habits today",
+        quizIntroCopy: "This challenge does not calculate a PRYSM score. It helps you reflect on everyday habits and creates curiosity about what a real measurement might show.",
+        meta1: "No registration",
+        meta2: "No wrong answers",
+        meta3: "Instant result",
+        resultNote: "This is a lifestyle overview—not a real PRYSM score. Your measured score requires a PRYSM iO scan.",
+        resultCTA: "Book a scan to know",
+        retry: "Try again",
+        howKicker: "How PRYSM Works",
+        howTitle: "From a feeling to something visible",
+        howCopy: "The process is simple and quick, giving you a useful starting point for a conversation about your everyday wellness habits.",
+        step1Title: "Place your fingertip",
+        step1Copy: "No blood draw. Simply position your fingertip as guided.",
+        step2Title: "See a score in 15 seconds",
+        step2Copy: "The result appears in an easy-to-understand color zone for discussion and reference.",
+        step3Title: "Build your next-step plan",
+        step3Copy: "Review nutrition, sleep and movement habits, then follow your progress over time.",
+        coachKicker: "Meet Your Wellness Mentor",
+        talkOnLine: "Talk with Ong on LINE",
+        faqKicker: "Frequently Asked Questions",
+        faqTitle: "What people ask before scanning",
+        finalKicker: "Ready to Know Your Score?",
+        finalTitle: "Ready to discover<br>your own score?",
+        finalCopy: "It takes about 15 seconds, involves no blood draw, and shows your score zone immediately.",
+        finalCTA: "Book a PRYSM Scan on LINE",
+        mobileCTA: "Book on LINE",
+        disclaimer: "This challenge is a general reflection on everyday habits, not a diagnosis or medical recommendation. PRYSM iO information relates to nutritional wellness and does not replace medical testing or advice from a qualified healthcare professional.",
+        questionLabel: "Question",
+        of: "of",
+        resultBadge: "Your lifestyle overview",
+        questions: [
+          {
+            emoji: "🥗",
+            text: "How often do you eat a variety of colorful fruits and vegetables?",
+            answers: [
+              ["Almost every day", 2, "✓"],
+              ["Some days", 1, "•"],
+              ["Rarely", 0, "—"]
+            ]
+          },
+          {
+            emoji: "🧋",
+            text: "How often do you have fried foods, sweets, bubble tea or soft drinks?",
+            answers: [
+              ["Occasionally", 2, "✓"],
+              ["Some days", 1, "•"],
+              ["Almost every day", 0, "—"]
+            ]
+          },
+          {
+            emoji: "😴",
+            text: "How many hours do you usually sleep each night?",
+            answers: [
+              ["7 hours or more", 2, "✓"],
+              ["Around 6–7 hours", 1, "•"],
+              ["Less than 6 hours", 0, "—"]
+            ]
+          },
+          {
+            emoji: "🏃",
+            text: "How often do you exercise or move with purpose?",
+            answers: [
+              ["3+ times per week", 2, "✓"],
+              ["1–2 times per week", 1, "•"],
+              ["Rarely", 0, "—"]
+            ]
+          },
+          {
+            emoji: "🚭",
+            text: "How often are you exposed to smoking, vaping or second-hand smoke?",
+            answers: [
+              ["Never", 2, "✓"],
+              ["Sometimes", 1, "•"],
+              ["Regularly", 0, "—"]
+            ]
+          }
+        ],
+        results: [
+          {
+            max: 3,
+            title: "A starting point you can change",
+            message: "Some habits may be limiting how fully you support your body. The good news is that small, consistent changes can make a difference—and a measured score can give you a clearer starting point.",
+            position: 17,
+            color: "#ff8a3d"
+          },
+          {
+            max: 7,
+            title: "You are building a solid foundation",
+            message: "You already have several supportive habits, with some room to improve. A questionnaire can reflect behavior, but it cannot show where your measured nutritional wellness currently sits.",
+            position: 52,
+            color: "#31c878"
+          },
+          {
+            max: 10,
+            title: "Your foundation looks very strong",
+            message: "You take consistent care of your health. Yet even health-conscious people can be surprised by a real score, because habits and feelings do not reveal every measurable detail. That is what makes a scan interesting.",
+            position: 84,
+            color: "#8b5cf6"
+          }
+        ],
+        faqs: [
+          ["Does the scan hurt?", "No. It is non-invasive and does not involve a blood draw. You simply position your fingertip as instructed."],
+          ["How long does it take?", "The device reading takes about 15 seconds. Your scan guide can then help explain the score zone."],
+          ["Do I need to fast or prepare?", "Fasting is generally not required. Ask your scan guide if there are any specific instructions before your appointment."],
+          ["Is this score a medical diagnosis?", "No. PRYSM iO is not intended to diagnose, treat or prevent disease and does not replace advice from a healthcare professional."]
+        ]
+      }
+    };
+
+    let currentLanguage = localStorage.getItem("prysm-language") || "th";
+    let questionIndex = 0;
+    let totalScore = 0;
+
+    const stage = document.getElementById("questionStage");
+    const resultPanel = document.getElementById("resultPanel");
+    const progressFill = document.getElementById("progressFill");
+    const progressCount = document.getElementById("progressCount");
+
+    function initialsFromName(name) {
+      const cleaned = name.replace(/[^\p{L}\p{N}\s]/gu, " ").trim();
+      const parts = cleaned.split(/\s+/).filter(Boolean);
+      if (!parts.length) return "OT";
+      if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+
+    function applyProfile() {
+      const name = PROFILE.name[currentLanguage];
+      const tagline = PROFILE.tagline[currentLanguage];
+      const initials = initialsFromName(PROFILE.name.en || name);
+
+      document.getElementById("profileName").textContent = name;
+      document.getElementById("profileTagline").textContent = tagline;
+      document.getElementById("coachHeading").textContent = PROFILE.coachHeading[currentLanguage];
+      document.getElementById("coachStory").textContent = PROFILE.story[currentLanguage];
+      document.getElementById("heroInitials").textContent = initials;
+      document.getElementById("coachInitials").textContent = initials;
+
+      document.querySelectorAll(".line-link").forEach(link => {
+        link.href = PROFILE.lineUrl;
+      });
+
+      if (PROFILE.photoUrl) {
+        document.getElementById("heroAvatar").innerHTML =
+          `<img src="${PROFILE.photoUrl}" alt="${name}">`;
+        document.getElementById("coachPhoto").innerHTML =
+          `<img src="${PROFILE.photoUrl}" alt="${name}">`;
+      }
+    }
+
+    function applyTranslations() {
+      const t = translations[currentLanguage];
+      document.documentElement.lang = currentLanguage;
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+
+      document.querySelectorAll("[data-i18n-html]").forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+
+      document.querySelectorAll(".lang-btn").forEach(button => {
+        const active = button.dataset.lang === currentLanguage;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+
+      applyProfile();
+      renderFaqs();
+
+      if (!resultPanel.hidden) {
+        showResult();
+      } else {
+        renderQuestion();
+      }
+    }
+
+    function renderQuestion() {
+      const t = translations[currentLanguage];
+      const question = t.questions[questionIndex];
+
+      resultPanel.hidden = true;
+      stage.hidden = false;
+      progressFill.style.width = `${((questionIndex + 1) / t.questions.length) * 100}%`;
+      progressCount.textContent = `${questionIndex + 1} / ${t.questions.length}`;
+
+      stage.innerHTML = `
+        <div class="question-animate">
+          <div class="question-emoji" aria-hidden="true">${question.emoji}</div>
+          <div class="question-label">
+            ${t.questionLabel} ${questionIndex + 1} ${t.of} ${t.questions.length}
+          </div>
+          <div class="question-text">${question.text}</div>
+          <div class="answer-list">
+            ${question.answers.map(answer => `
+              <button class="answer-btn" type="button" data-score="${answer[1]}">
+                <span class="answer-dot" aria-hidden="true">${answer[2]}</span>
+                <span>${answer[0]}</span>
+              </button>
+            `).join("")}
+          </div>
+        </div>
+      `;
+
+      stage.querySelectorAll(".answer-btn").forEach(button => {
+        button.addEventListener("click", () => {
+          totalScore += Number(button.dataset.score);
+          questionIndex += 1;
+
+          if (questionIndex < t.questions.length) {
+            renderQuestion();
+          } else {
+            showResult();
+          }
+        });
+      });
+    }
+
+    function showResult() {
+      const t = translations[currentLanguage];
+      const result = t.results.find(item => totalScore <= item.max) || t.results[t.results.length - 1];
+
+      stage.hidden = true;
+      resultPanel.hidden = false;
+      progressFill.style.width = "100%";
+      progressCount.textContent = `${t.questions.length} / ${t.questions.length}`;
+
+      document.getElementById("resultBadge").textContent = t.resultBadge;
+      document.getElementById("resultTitle").textContent = result.title;
+      document.getElementById("resultMessage").textContent = result.message;
+      document.getElementById("resultDot").style.background = result.color;
+
+      requestAnimationFrame(() => {
+        document.getElementById("habitMarker").style.left = `${result.position}%`;
+      });
+    }
+
+    function resetQuiz() {
+      questionIndex = 0;
+      totalScore = 0;
+      document.getElementById("habitMarker").style.left = "50%";
+      renderQuestion();
+    }
+
+    function renderFaqs() {
+      const items = translations[currentLanguage].faqs;
+      const list = document.getElementById("faqList");
+
+      list.innerHTML = items.map((item, index) => `
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-${index}">
+            <span>${item[0]}</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-${index}">
+            <p>${item[1]}</p>
+          </div>
+        </article>
+      `).join("");
+
+      list.querySelectorAll(".faq-question").forEach(button => {
+        button.addEventListener("click", () => {
+          const item = button.parentElement;
+          const answer = item.querySelector(".faq-answer");
+          const open = item.classList.toggle("open");
+
+          button.setAttribute("aria-expanded", String(open));
+          answer.style.maxHeight = open ? `${answer.scrollHeight}px` : "0px";
+        });
+      });
+    }
+
+    document.querySelectorAll(".lang-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        currentLanguage = button.dataset.lang;
+        localStorage.setItem("prysm-language", currentLanguage);
+        applyTranslations();
+      });
+    });
+
+    document.getElementById("retryButton").addEventListener("click", resetQuiz);
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    applyTranslations();
+  </script>
+</body>
+</html>
