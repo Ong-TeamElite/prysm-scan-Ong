@@ -474,9 +474,11 @@
 
     .quiz-wrap {
       display: grid;
-      grid-template-columns: .75fr 1.25fr;
-      gap: 32px;
+      grid-template-columns: 1fr;
+      gap: 0;
       align-items: stretch;
+      max-width: 880px;
+      margin-inline: auto;
     }
 
     .quiz-intro {
@@ -1031,7 +1033,6 @@
       .hero-actions { justify-content: center; }
       .hero-visual { min-height: 560px; }
 
-      .quiz-wrap,
       .coach { grid-template-columns: 1fr; }
 
       .quiz-intro { min-height: auto; }
@@ -1077,7 +1078,7 @@
 
       .section { padding: 80px 0; }
       .section-title { font-size: clamp(2.05rem, 11vw, 3.3rem); }
-      .quiz-wrap { gap: 16px; }
+      .quiz-wrap { gap: 0; }
       .quiz-intro, .quiz-card { border-radius: 26px; }
       .quiz-card { min-height: 540px; padding: 24px 20px; }
       .question-text { font-size: 1.62rem; }
@@ -1202,20 +1203,7 @@
     <section class="section" id="challenge">
       <div class="shell">
         <div class="quiz-wrap">
-          <aside class="quiz-intro">
-            <span class="section-kicker" data-i18n="quizKicker">5 Questions · 30 Seconds</span>
-            <h2 data-i18n-html="quizIntroTitle">ลองเช็กนิสัยสุขภาพ<br>ของคุณวันนี้</h2>
-            <p data-i18n="quizIntroCopy">
-              แบบประเมินนี้ไม่ได้คำนวณคะแนน PRYSM แต่ช่วยให้คุณเห็นภาพพฤติกรรมในแต่ละวัน และสร้างความอยากรู้ว่าคะแนนที่วัดจริงจะเป็นอย่างไร
-            </p>
-            <div class="quiz-meta">
-              <span data-i18n="meta1">ไม่ต้องลงทะเบียน</span>
-              <span data-i18n="meta2">ไม่มีคำตอบผิด</span>
-              <span data-i18n="meta3">ผลทันที</span>
-            </div>
-          </aside>
-
-          <section class="quiz-card" aria-live="polite">
+<section class="quiz-card" aria-live="polite">
             <div class="quiz-progress">
               <div class="progress-track" aria-hidden="true">
                 <div class="progress-fill" id="progressFill"></div>
